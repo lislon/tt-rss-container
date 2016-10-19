@@ -1,0 +1,32 @@
+version: '2'
+services:
+  ttrss:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - DB_NAME=ttrss
+      - DB_USER=ttrss
+      - DB_PASS=ttrss
+      - DB_HOST=db
+      - DB_PORT=3306
+      - SELF_URL_PATH=http://localhost/
+    links:
+      - db:db
+  db:
+    image:  sameersbn/mysql:latest
+    environment:
+      - DB_NAME=ttrss
+      - DB_USER=ttrss
+      - DB_PASS=ttrss
+    # volumes:
+      # - ttrss-db:/var/lib/mysql
+
+networks:
+  default:
+    external:
+      name: docker_default
+
+# volumes:
+#   ttrss-db:
+#     external: true
