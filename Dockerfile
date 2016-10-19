@@ -1,3 +1,4 @@
+# Added retry script for waiting
 FROM clue/ttrss
 MAINTAINER Igor Avdeev
 

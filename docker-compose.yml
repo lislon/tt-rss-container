@@ -1,9 +1,17 @@
+# Runs mysql container + ttrss container
 version: '2'
 services:
+  db:
+    image:  sameersbn/mysql:latest
+    environment:
+      - DB_NAME=ttrss
+      - DB_USER=ttrss
+      - DB_PASS=ttrss
   ttrss:
     build: .
+    restart: always
     ports:
-      - "80:80"
+      - "$TTRSS_PORT:80"
     environment:
       - DB_NAME=ttrss
       - DB_USER=ttrss
@@ -13,20 +21,8 @@ services:
       - SELF_URL_PATH=http://localhost/
     links:
       - db:db
-  db:
-    image:  sameersbn/mysql:latest
-    environment:
-      - DB_NAME=ttrss
-      - DB_USER=ttrss
-      - DB_PASS=ttrss
-    # volumes:
-      # - ttrss-db:/var/lib/mysql
 
-networks:
-  default:
-    external:
-      name: docker_default
-
-# volumes:
-#   ttrss-db:
-#     external: true
+# networks:
+#   default:
+#     external:
+#       name: docker_default
