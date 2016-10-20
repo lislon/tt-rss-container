@@ -9,9 +9,13 @@ Docker installation for running tt-rss server.
 
 ## Installation ##
 
-Clone a repo onto your computer 
+Install docker and docker-compose
 
-### arch-linux ###
+``` shell
+git clone https://github.com/lislon/tt-rss-container.git .
+```
+
+### Archlinux ###
 
 ``` shell
 sudo pacman -S docker docker-compose
@@ -20,12 +24,14 @@ sudo pacman -S docker docker-compose
 
 See official installation [docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install)
 
-Add your user to `docker` group to run docker commands without sudo:
+Don't forget to add your linux user to `docker` group to run docker commands without sudo:
 
 ``` shell
 usermod -a -G docker $USER
 sudo su - $USER
 ```
+
+clone a repo onto your computer 
 
 ## Usage ##
 
@@ -35,7 +41,7 @@ To start docker containers use the following command inside repo directory:
 docker-compose start
 ```
 
-Then container should be available on http://localhost
+Then container should be available on [http://localhost/](http://localhost/)
 
 Default admin credentials:
 
@@ -44,13 +50,13 @@ User: admin
 Password: password
 ```
 
-If you want to change port, use environment variable `TTRSS_PORT`
+To change port set environment variable `TTRSS_PORT`
 
 ``` shell
 TTRSS_PORT=5000 docker-compose start
 ```
 
-## Import/Export database ##
+## Import/export database ##
 
 At first run tt-rss database will be populated with empty structure. If you have existing ttrss database structure you can import it into container:
 
