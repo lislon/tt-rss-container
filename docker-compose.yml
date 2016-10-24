@@ -3,13 +3,14 @@ version: '2'
 services:
   db:
     image:  sameersbn/mysql:latest
+    # restart: always
     environment:
       - DB_NAME=ttrss
       - DB_USER=ttrss
       - DB_PASS=ttrss
   ttrss:
     build: .
-    restart: always
+    # restart: always
     ports:
       - "$TTRSS_PORT:80"
     environment:
@@ -21,8 +22,3 @@ services:
       - SELF_URL_PATH=http://localhost/
     links:
       - db:db
-
-# networks:
-#   default:
-#     external:
-#       name: docker_default
