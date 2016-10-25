@@ -17,4 +17,5 @@ if (( $RETRY <= 1 )) ; then
     exit 1
 fi
 
-echo "mysql is running"
+echo "mysql is listening. Wait a little bit more"
+sleep 2
